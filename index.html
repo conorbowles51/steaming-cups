@@ -107,7 +107,7 @@
   }
   .hero-img {
     position: absolute; inset: 0;
-    background: url('assets/shop-interior.webp') center/cover;
+    background: url('assets/shop-interior.png') center/cover;
     filter: saturate(1.08) contrast(1.03);
   }
   .hero-scrim {
@@ -807,7 +807,12 @@
     <a href="#regulars">Regulars</a>
     <a href="#visit">Visit</a>
   </div>
-  <div class="nav-right"><span class="dot"></span>Open until 2:00</div>
+  <div style="display:flex;align-items:center;gap:20px;">
+    <a href="https://www.instagram.com/steaming_cups/" target="_blank" rel="noopener" aria-label="Instagram" style="color:var(--cream);text-decoration:none;display:inline-flex;align-items:center;opacity:.88;transition:opacity .2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.88'">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <div class="nav-right"><span class="dot"></span>Open until 2:00</div>
+  </div>
 </nav>
 
 <!-- ============ HERO ============ -->
@@ -815,9 +820,9 @@
   <div class="hero-img"></div>
   <div class="hero-scrim"></div>
   <div class="hero-inner">
-    <div class="hero-eyebrow">A neighborhood coffee bar · Drumcondra, Dublin</div>
-    <h1 class="hero-title">Slow mornings, <em>warm cups,</em> pastries by the window.</h1>
-    <p class="hero-sub">Freshly pulled espresso, laminated pastries baked at dawn, and a stool always kept warm for you. Since 2019.</p>
+    <div class="hero-eyebrow">At Drumcondra Station · Dublin</div>
+    <h1 class="hero-title">Slow mornings, <em>warm cups,</em> pastries before the platform.</h1>
+    <p class="hero-sub">Locally roasted coffee, organic pastries, and a smile before your commute. Right at the entrance to Drumcondra Station.</p>
     <div class="hero-actions">
       <a href="#menu" class="btn btn-primary">View the menu <span class="arrow">→</span></a>
       <a href="#visit" class="btn btn-ghost">Visit us</a>
@@ -831,14 +836,14 @@
     <div class="story-grid">
       <div class="story-copy">
         <span class="eyebrow">Our story</span>
-        <h2 class="section-title">A little shop with <em>big window light.</em></h2>
-        <div class="lede">We opened Steaming Cups in a narrow storefront with a red awning and a stubborn espresso machine. Six years on, the regulars know where the sugar lives.</div>
-        <p style="margin-top:28px" class="first-letter">Our beans come from a small roaster two neighborhoods over, delivered every Monday and every Friday. We grind them to order, pull each shot within thirty seconds, and steam the milk to a silky, quiet spin — the kind that leaves a proper rosetta on a flat white and makes a cappuccino stand up on its own.</p>
-        <p>The pastry case fills up at six. The cookies get chalkboard nicknames. The playlist changes with the weather. We keep things small on purpose — it's the only way a café stays a café.</p>
+        <h2 class="section-title">A little kiosk with <em>big energy.</em></h2>
+        <div class="lede">We set up Steaming Cups at the entrance to Drumcondra Station — a small spot with a big commitment to doing coffee properly. Every morning, commuters and students heading to DCU know exactly where to stop.</div>
+        <p style="margin-top:28px" class="first-letter">Our beans are locally roasted, ground to order, and pulled fresh for every cup. We use ethically sourced cacao, locally farmed whole milk, and steam everything to a silky, quiet spin — the kind that leaves a proper rosetta on a flat white and makes a cappuccino stand up on its own.</p>
+        <p>The pastry case fills up before dawn — everything organic, everything baked fresh. We keep things small on purpose — it's the only way a café stays a café.</p>
         <div class="signature">
           <div>
-            <div class="signature-name">Mira &amp; Daniyal</div>
-            <div class="signature-role">Owners · Baristas · Dishwashers</div>
+            <div class="signature-name">The Steaming Cups Team</div>
+            <div class="signature-role">Coffee · Pastries · Good mornings</div>
           </div>
         </div>
       </div>
@@ -846,7 +851,7 @@
       <div class="story-image-stack">
         <div class="story-img story-img-main"><img src="assets/espresso-machine.webp" alt="Our espresso bar"></div>
         <div class="story-img story-img-small"><img src="assets/pastries.webp" alt="Pastry case"></div>
-        <div class="story-caption">this morning, 6:42am</div>
+        <div class="story-caption">before the 7:15 train</div>
       </div>
     </div>
   </div>
@@ -855,8 +860,8 @@
 <!-- ============ PULL QUOTE ============ -->
 <section class="pullquote">
   <div class="wrap">
-    <blockquote>Good coffee, made with care. A warm room. Nothing you wouldn't want.</blockquote>
-    <cite>— Our whole philosophy, more or less</cite>
+    <blockquote>Always really good coffee, reasonably priced, with very friendly service.</blockquote>
+    <cite>— A morning regular</cite>
   </div>
 </section>
 
@@ -868,17 +873,16 @@
         <span class="eyebrow">The menu</span>
         <h2 class="section-title">Small &amp; <em>honest.</em></h2>
       </div>
-      <p class="lede">Everything we serve, on one page. Swap any milk for oat, almond, or soy — no upcharge.</p>
+      <p class="lede">Everything we serve, all in one place. Locally roasted, ethically sourced, ready to go.</p>
     </div>
 
     <div class="menu-filters" role="group" aria-label="Filter menu">
       <span class="filter-label">Show</span>
       <button class="chip active" data-filter="all">Everything</button>
       <button class="chip" data-filter="espresso">Espresso</button>
-      <button class="chip" data-filter="slow">Slow coffee</button>
       <button class="chip" data-filter="iced">Iced</button>
       <button class="chip" data-filter="pastry">Pastries</button>
-      <button class="chip" data-filter="brunch">Brunch</button>
+      <button class="chip" data-filter="other">Drinks</button>
       <button class="chip" data-filter="vegan">Vegan</button>
       <button class="chip" data-filter="gf">Gluten-free</button>
     </div>
@@ -886,7 +890,7 @@
     <div class="menu-sections" id="menu-sections"></div>
 
     <div class="menu-footer">
-      <span>Prices in EUR · Kitchen closes thirty minutes before the shop does</span>
+      <span>Prices in EUR · Takeaway only</span>
       <span>Updated <em>this morning</em></span>
     </div>
   </div>
@@ -900,36 +904,36 @@
         <span class="eyebrow">Regulars</span>
         <h2 class="section-title">A few kind words.</h2>
       </div>
-      <p class="lede">Written in the guestbook that lives on the counter, between the sugar and the tip jar.</p>
+      <p class="lede">A few words from the people who stop by every morning.</p>
     </div>
     <div class="regulars-grid">
       <div class="regular-card">
-        <p class="regular-quote">The only café where the barista remembers my order <em>and</em> my dog's name. Yuki gets a biscuit every Saturday. I get a cortado.</p>
+        <p class="regular-quote">Always really good coffee, reasonably priced. It's become the best part of my commute — I genuinely look forward to it every morning.</p>
         <div class="regular-meta">
-          <div class="regular-avatar">J</div>
+          <div class="regular-avatar">D</div>
           <div>
-            <div class="regular-name">Jenna Park</div>
-            <div class="regular-detail">Tuesdays, by the window</div>
+            <div class="regular-name">David</div>
+            <div class="regular-detail">Every weekday, off the 7:15</div>
           </div>
         </div>
       </div>
       <div class="regular-card">
-        <p class="regular-quote">I've edited four drafts of my novel at the two-top near the radiator. The flat whites are the real co-author.</p>
+        <p class="regular-quote">The cappuccino here is perfect — a well-proportioned dusting of chocolate that complements the coffee rather than masking it. You can tell they care.</p>
         <div class="regular-meta">
-          <div class="regular-avatar">S</div>
+          <div class="regular-avatar">A</div>
           <div>
-            <div class="regular-name">Sam Okafor</div>
-            <div class="regular-detail">Mornings, laptop open</div>
+            <div class="regular-name">Aoife</div>
+            <div class="regular-detail">On the way to DCU</div>
           </div>
         </div>
       </div>
       <div class="regular-card">
-        <p class="regular-quote">The almond croissant is the closest thing my family has to a Sunday tradition now. My kids request it over brunch.</p>
+        <p class="regular-quote">The staff are incredibly friendly and knowledgeable. They remember your order, they get it right, and the organic pastries are a proper treat.</p>
         <div class="regular-meta">
-          <div class="regular-avatar">R</div>
+          <div class="regular-avatar">M</div>
           <div>
-            <div class="regular-name">Rita Alvarez</div>
-            <div class="regular-detail">Weekends, with three small humans</div>
+            <div class="regular-name">Mark</div>
+            <div class="regular-detail">Mornings, rain or shine</div>
           </div>
         </div>
       </div>
@@ -949,7 +953,7 @@
         <div class="hours-top">
           <div>
             <h3 class="hours-title">Opening hours</h3>
-            <div class="hours-note">Kitchen closes thirty minutes earlier.</div>
+            <div class="hours-note">Takeaway only · Monday to Friday</div>
           </div>
           <div class="status"><span class="dot"></span>Open now</div>
         </div>
@@ -969,8 +973,8 @@
         <div class="visit-card-body">
           <h3>30 Drumcondra Rd Lower</h3>
           <address>
-            Drumcondra, Dublin<br>
-            D09 H0V5
+            Drumcondra, Dublin, D09 H0V5<br>
+            At the entrance to Drumcondra Station
           </address>
           <div class="visit-card-actions">
             <a href="#" class="btn btn-primary">Get directions</a>
@@ -1010,9 +1014,8 @@
       <div class="foot-col">
         <h5>Follow along</h5>
         <ul>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Newsletter</a></li>
-          <li><a href="#">hello@steamingcups.co</a></li>
+          <li><a href="https://www.instagram.com/steaming_cups/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="mailto:steamingcupsdublin@gmail.com">steamingcupsdublin@gmail.com</a></li>
         </ul>
       </div>
     </div>
@@ -1037,19 +1040,17 @@
         { name: 'Flat white',   price: '4.75', diet: ['gf'],          desc: 'Double ristretto with silky microfoam. Our most-ordered drink.' },
         { name: 'Cappuccino',   price: '4.75', diet: ['gf'],          desc: 'Lifted foam, a dusting of cocoa on request.' },
         { name: 'Latte',        price: '5.00', diet: ['gf'],          desc: 'Smooth, forgiving, always a safe bet.' },
-        { name: 'Mocha',        price: '5.25', diet: ['gf'],          desc: 'House ganache folded into a double shot. Not too sweet.' }
+        { name: 'Mocha',        price: '5.25', diet: ['gf'],          desc: 'Real milk chocolate and ethically sourced cacao folded into a double shot. Not too sweet.' }
       ]
     },
     {
-      id: 'slow',
-      title: 'Slow coffee',
-      note: 'Pour-over & cup service',
+      id: 'other',
+      title: 'Other drinks',
+      note: 'Not just coffee',
       items: [
-        { name: 'Drip of the day', price: '3.50', diet: ['v','df','gf'], desc: 'Whatever we\'re brewing in the batch urn — ask the barista.' },
-        { name: 'Hand pour',       price: '5.50', diet: ['v','df','gf'], desc: 'V60 or Kalita, single origin, a four-minute wait well spent.' },
-        { name: 'French press',    price: '6.00', diet: ['v','df','gf'], desc: 'A full pot, for two. Heavier body, brighter finish.' },
-        { name: 'Chai latte',      price: '4.75', diet: ['gf'],          desc: 'Housemade masala, steeped strong, steamed to order.' },
-        { name: 'Hot chocolate',   price: '4.75', diet: ['gf'],          desc: '70% dark chocolate melted into whole milk. Marshmallow optional.' }
+        { name: 'Chai latte',      price: '4.75', diet: ['gf'],          desc: 'Steeped strong, steamed to order.' },
+        { name: 'Hot chocolate',   price: '4.75', diet: ['gf'],          desc: 'Real chocolate melted into locally farmed whole milk.' },
+        { name: 'Vitamin boost',   price: '4.50', diet: ['v','df','gf'], desc: 'A fresh pick-me-up to start the morning right.' }
       ]
     },
     {
@@ -1067,7 +1068,7 @@
     {
       id: 'pastry',
       title: 'From the case',
-      note: 'Baked here, every morning',
+      note: 'All organic, baked fresh every morning',
       items: [
         { name: 'Butter croissant',    price: '3.75', diet: [], desc: 'Laminated over 72 hours. Flakes on your lap, no apologies.' },
         { name: 'Pain au chocolat',    price: '4.25', diet: [], desc: 'Dark chocolate batons, same honest dough.' },
@@ -1077,18 +1078,6 @@
         { name: 'Oat chocolate cookie',price: '3.50', diet: ['v','df'], desc: 'Chewy, salty, secretly plant-based.' },
         { name: 'Flourless chocolate', price: '5.25', diet: ['gf'],     desc: 'Dense, fudgy, no flour in sight.' },
         { name: 'Banana bread',        price: '3.75', diet: [],         desc: 'Brown-butter, walnut, a pinch of flaky sea salt.' }
-      ]
-    },
-    {
-      id: 'brunch',
-      title: 'All-day brunch',
-      note: 'Small kitchen, honest plates',
-      items: [
-        { name: 'Avocado toast',      price: '9.50',  diet: ['v','df'],      desc: 'Sourdough, smashed avocado, lemon, chili flakes, soft herbs.' },
-        { name: 'Burrata plate',      price: '11.00', diet: ['gf'],          desc: 'Burrata, heirloom tomato, torn basil, olive oil, flaky salt.' },
-        { name: 'Breakfast sandwich', price: '8.50',  diet: [],              desc: 'Brioche, soft egg, cheddar, tomato jam. Bacon optional.' },
-        { name: 'Granola bowl',       price: '7.50',  diet: ['v','df'],      desc: 'Housemade granola, coconut yogurt, seasonal fruit, honey.' },
-        { name: 'Soup of the day',    price: '6.50',  diet: ['v','df','gf'], desc: 'Ask us what\'s in the pot. Bread, butter, included.' }
       ]
     }
   ];
@@ -1104,7 +1093,7 @@
     mount.innerHTML = GROUPS.map(group => {
       // Category filter
       let show = true;
-      if (['espresso','slow','iced','pastry','brunch'].includes(activeFilter) && group.id !== activeFilter) {
+      if (['espresso','iced','pastry','other'].includes(activeFilter) && group.id !== activeFilter) {
         show = false;
       }
       if (!show) return '';
