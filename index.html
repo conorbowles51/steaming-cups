@@ -113,7 +113,7 @@
   /* ============ HERO ============ */
   .hero {
     position: relative;
-    min-height: 92vh;
+    min-height: 94vh;
     overflow: hidden;
     color: var(--cream);
     display: flex; align-items: flex-end;
@@ -121,19 +121,56 @@
   .hero-img {
     position: absolute; inset: 0;
     background: url('assets/shop-interior.png') center/cover;
-    filter: saturate(1.08) contrast(1.03);
+    filter: saturate(1.1) contrast(1.04);
+    transform: scale(1.03);
+    animation: heroZoom 24s ease-out forwards;
+  }
+  @keyframes heroZoom {
+    to { transform: scale(1); }
   }
   .hero-scrim {
     position: absolute; inset: 0;
     background:
-      linear-gradient(180deg, rgba(15,8,4,.55) 0%, rgba(15,8,4,.15) 40%, rgba(15,8,4,.78) 100%);
+      radial-gradient(120% 70% at 85% 10%, rgba(212,137,58,.18), transparent 55%),
+      radial-gradient(80% 90% at 15% 85%, rgba(10,5,2,.7), transparent 60%),
+      linear-gradient(180deg, rgba(10,5,2,.72) 0%, rgba(10,5,2,.35) 35%, rgba(10,5,2,.78) 78%, rgba(10,5,2,.94) 100%);
+  }
+  .hero-grain {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    opacity: .35;
+    mix-blend-mode: overlay;
+    background-image:
+      radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+      radial-gradient(rgba(0,0,0,.08) 1px, transparent 1px);
+    background-size: 3px 3px, 5px 5px;
+    background-position: 0 0, 1px 2px;
   }
   .hero-inner {
     position: relative;
     width: 100%;
     max-width: 1180px;
     margin: 0 auto;
-    padding: 0 40px 110px;
+    padding: 0 40px 120px;
+  }
+  .hero-side {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: left center;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .32em;
+    text-transform: uppercase;
+    color: rgba(250,243,228,.55);
+    white-space: nowrap;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .hero-side::before {
+    content: ''; width: 34px; height: 1px;
+    background: rgba(250,243,228,.4);
   }
   .hero-eyebrow {
     font-family: 'Fraunces', serif;
@@ -141,37 +178,163 @@
     font-weight: 400;
     font-size: 16px;
     letter-spacing: .01em;
-    opacity: .92;
-    display: inline-flex; align-items: center; gap: 14px;
-    margin-bottom: 22px;
+    opacity: .95;
+    display: inline-flex; align-items: center; gap: 12px;
+    margin-bottom: 24px;
+    padding: 7px 16px 7px 12px;
+    background: rgba(15,8,4,.28);
+    border: 1px solid rgba(250,243,228,.18);
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
   }
-  .hero-eyebrow::before,
-  .hero-eyebrow::after {
-    content: ''; width: 28px; height: 1px; background: rgba(250,243,228,.5);
-  }
+  .hero-eyebrow svg { flex-shrink: 0; opacity: .85; }
   h1.hero-title {
     font-family: 'Fraunces', serif;
     font-weight: 400;
-    font-size: clamp(56px, 8.2vw, 118px);
-    line-height: .98;
-    letter-spacing: -0.025em;
-    margin: 0 0 28px;
+    font-size: clamp(56px, 8.4vw, 124px);
+    line-height: .96;
+    letter-spacing: -0.028em;
+    margin: 0 0 30px;
     max-width: 13ch;
     text-wrap: balance;
+    text-shadow: 0 2px 12px rgba(0,0,0,.45), 0 6px 40px rgba(0,0,0,.4);
   }
   .hero-title em {
     font-style: italic;
     font-weight: 400;
     color: #f2c58a;
+    position: relative;
+  }
+  .hero-title em::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 6%;
+    bottom: .04em;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(242,197,138,.7), rgba(242,197,138,0));
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: underline 1.2s cubic-bezier(.2,.6,.2,1) .9s forwards;
+  }
+  @keyframes underline {
+    to { transform: scaleX(1); }
   }
   .hero-sub {
-    max-width: 42ch;
-    font-size: 17px;
+    max-width: 44ch;
+    font-size: 17.5px;
     line-height: 1.65;
-    color: rgba(250,243,228,.88);
-    margin: 0 0 36px;
+    color: rgba(250,243,228,.95);
+    margin: 0 0 40px;
+    text-shadow: 0 1px 8px rgba(0,0,0,.5);
   }
   .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+
+  /* Floating stat/badge card, bottom-right */
+  .hero-badge {
+    position: absolute;
+    right: 40px;
+    bottom: 120px;
+    z-index: 3;
+    background: rgba(244,236,220,.08);
+    border: 1px solid rgba(250,243,228,.22);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 14px;
+    padding: 18px 22px;
+    color: var(--cream);
+    display: flex; align-items: center; gap: 16px;
+    max-width: 280px;
+    box-shadow: 0 10px 40px rgba(0,0,0,.25);
+  }
+  .hero-badge-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 38px;
+    line-height: 1;
+    color: #f2c58a;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+  .hero-badge-num sup {
+    font-size: 16px;
+    margin-left: 2px;
+    vertical-align: top;
+    opacity: .7;
+  }
+  .hero-badge-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    line-height: 1.45;
+    letter-spacing: .02em;
+  }
+  .hero-badge-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: rgba(250,243,228,.6);
+    margin-bottom: 3px;
+  }
+  .hero-badge-divider {
+    width: 1px; align-self: stretch;
+    background: rgba(250,243,228,.2);
+  }
+  .hero-stars {
+    display: inline-flex; gap: 1px;
+    color: #f2c58a;
+    margin-top: 4px;
+  }
+
+  /* Scroll indicator */
+  .hero-scroll {
+    position: absolute;
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: rgba(250,243,228,.6);
+    text-decoration: none;
+  }
+  .hero-scroll-line {
+    width: 1px; height: 36px;
+    background: linear-gradient(180deg, rgba(250,243,228,.5), rgba(250,243,228,0));
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -40%; left: 0;
+    width: 100%; height: 40%;
+    background: linear-gradient(180deg, transparent, rgba(242,197,138,.9));
+    animation: scrollDown 2.2s ease-in-out infinite;
+  }
+  @keyframes scrollDown {
+    0% { top: -40%; }
+    100% { top: 100%; }
+  }
+
+  /* Entrance animations */
+  .hero-reveal { opacity: 0; transform: translateY(16px); animation: heroFade .9s cubic-bezier(.2,.6,.2,1) forwards; }
+  .hero-reveal.d1 { animation-delay: .1s; }
+  .hero-reveal.d2 { animation-delay: .25s; }
+  .hero-reveal.d3 { animation-delay: .4s; }
+  .hero-reveal.d4 { animation-delay: .55s; }
+  .hero-reveal.d5 { animation-delay: .75s; }
+  @keyframes heroFade {
+    to { opacity: 1; transform: translateY(0); }
+  }
 
   .btn {
     display: inline-flex; align-items: center; gap: 10px;
@@ -689,40 +852,78 @@
     border-radius: 12px;
     overflow: hidden;
     min-height: 480px;
-    color: var(--cream);
+    background: var(--cream);
+    border: 1px solid var(--rule-soft);
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
     box-shadow: var(--shadow-lift);
   }
-  .visit-card-img {
-    position: absolute; inset: 0;
-    background: url('assets/storefront.webp') center/cover;
+  .visit-map {
+    position: relative;
+    flex: 1;
+    min-height: 280px;
+    background: var(--paper-deep);
+    overflow: hidden;
   }
-  .visit-card-scrim {
-    position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(15,8,4,.1) 35%, rgba(15,8,4,.85) 100%);
+  .visit-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    filter: saturate(.85) contrast(.96);
   }
+  .visit-map-pin {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: var(--cream);
+    border: 1px solid var(--rule-soft);
+    box-shadow: var(--shadow-soft);
+    border-radius: 999px;
+    padding: 8px 14px 8px 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    color: var(--ink);
+    pointer-events: none;
+  }
+  .visit-map-pin svg { color: var(--terracotta); flex-shrink: 0; }
   .visit-card-body {
     position: relative;
-    padding: 40px 40px 36px;
+    padding: 30px 36px 32px;
+    border-top: 1px solid var(--rule-soft);
+    background: var(--cream);
+    color: var(--ink);
   }
   .visit-card h3 {
     font-family: 'Fraunces', serif;
-    font-weight: 400;
-    font-size: 34px;
-    margin: 0 0 6px;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    font-weight: 500;
+    font-size: 26px;
+    margin: 0 0 4px;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    color: var(--ink);
   }
   .visit-card address {
     font-style: normal;
-    font-size: 15px;
+    font-size: 14.5px;
     line-height: 1.55;
-    opacity: .9;
-    margin-bottom: 24px;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
   }
   .visit-card-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .visit-card .btn-ghost {
+    color: var(--ink-2);
+    border: 1px solid var(--rule);
+  }
+  .visit-card .btn-ghost:hover {
+    background: var(--paper-warm);
+    border-color: var(--ink-mute);
+  }
 
   /* ============ FOOTER ============ */
   footer {
@@ -786,6 +987,9 @@
     .nav { padding: 24px 28px; }
     .nav-links { display: none; }
     .hero-inner { padding: 0 28px 90px; }
+    .hero-side { display: none; }
+    .hero-badge { display: none; }
+    .hero-scroll { display: none; }
 
     .story-grid,
     .menu-head,
@@ -812,38 +1016,66 @@
 <body>
 
 <!-- ============ BANNER ============ -->
-<div class="preview-banner">Concept website preview — not an official Steaming Cups website</div>
-
-<!-- ============ NAV ============ -->
-<nav class="nav">
-  <a href="#top" class="brand"><span>Steaming</span> Cups</a>
-  <div class="nav-links">
-    <a href="#story">Our story</a>
-    <a href="#menu">Menu</a>
-    <a href="#regulars">Regulars</a>
-    <a href="#visit">Visit</a>
-  </div>
-  <div style="display:flex;align-items:center;gap:20px;">
-    <a href="https://www.instagram.com/steaming_cups/" target="_blank" rel="noopener" aria-label="Instagram" style="color:var(--cream);text-decoration:none;display:inline-flex;align-items:center;opacity:.88;transition:opacity .2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.88'">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
-    </a>
-    <div class="nav-right"><span class="dot"></span>Open until 2:00</div>
-  </div>
-</nav>
+<div class="preview-banner">Concept preview only — independently created, not affiliated with or approved by Steaming Cups</div>
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
   <div class="hero-img"></div>
   <div class="hero-scrim"></div>
+  <div class="hero-grain"></div>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav">
+    <a href="#top" class="brand"><span>Steaming</span> Cups</a>
+    <div class="nav-links">
+      <a href="#story">Our story</a>
+      <a href="#menu">Menu</a>
+      <a href="#regulars">Regulars</a>
+      <a href="#visit">Visit</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:20px;">
+      <a href="https://www.instagram.com/steaming_cups/" target="_blank" rel="noopener" aria-label="Instagram" style="color:var(--cream);text-decoration:none;display:inline-flex;align-items:center;opacity:.88;transition:opacity .2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.88'">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <div class="nav-right"><span class="dot"></span>Open until 2:00</div>
+    </div>
+  </nav>
+
+  <div class="hero-side">Est. Drumcondra · Dublin</div>
   <div class="hero-inner">
-    <div class="hero-eyebrow">At Drumcondra Station · Dublin</div>
-    <h1 class="hero-title">Slow mornings, <em>warm cups,</em> pastries before the platform.</h1>
-    <p class="hero-sub">Locally roasted coffee, organic pastries, and a smile before your commute. Right at the entrance to Drumcondra Station.</p>
-    <div class="hero-actions">
+    <div class="hero-eyebrow hero-reveal d1">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      At Drumcondra Station · Dublin
+    </div>
+    <h1 class="hero-title hero-reveal d2">Slow mornings, <em>warm cups,</em> pastries before the platform.</h1>
+    <p class="hero-sub hero-reveal d3">Locally roasted coffee, organic pastries, and a smile before your commute. Right at the entrance to Drumcondra Station.</p>
+    <div class="hero-actions hero-reveal d4">
       <a href="#menu" class="btn btn-primary">View the menu <span class="arrow">→</span></a>
       <a href="#visit" class="btn btn-ghost">Visit us</a>
     </div>
   </div>
+  <div class="hero-badge hero-reveal d5">
+    <div>
+      <div class="hero-badge-label">Pouring</div>
+      <div class="hero-badge-num">7<span style="font-size:22px;opacity:.5;margin:0 4px;">–</span>2</div>
+    </div>
+    <div class="hero-badge-divider"></div>
+    <div class="hero-badge-body">
+      <div class="hero-badge-label">Mon–Fri</div>
+      <div>Locally roasted,<br>pulled to order.</div>
+      <div class="hero-stars" aria-label="5 out of 5 stars">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-4-6.3 4 1.7-7L2 9.5l7.1-.6z"/></svg>
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-4-6.3 4 1.7-7L2 9.5l7.1-.6z"/></svg>
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-4-6.3 4 1.7-7L2 9.5l7.1-.6z"/></svg>
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-4-6.3 4 1.7-7L2 9.5l7.1-.6z"/></svg>
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-4-6.3 4 1.7-7L2 9.5l7.1-.6z"/></svg>
+      </div>
+    </div>
+  </div>
+  <a href="#story" class="hero-scroll" aria-label="Scroll down">
+    <span>Scroll</span>
+    <span class="hero-scroll-line"></span>
+  </a>
 </section>
 
 <!-- ============ STORY ============ -->
@@ -984,8 +1216,18 @@
         </ul>
       </div>
       <div class="visit-card">
-        <div class="visit-card-img"></div>
-        <div class="visit-card-scrim"></div>
+        <div class="visit-map">
+          <iframe
+            src="https://maps.google.com/maps?q=Steaming%20Cups%2C%2030%20Drumcondra%20Rd%20Lower%2C%20Dublin&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Map of Steaming Cups, Drumcondra"
+            allowfullscreen></iframe>
+          <div class="visit-map-pin">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Steaming Cups
+          </div>
+        </div>
         <div class="visit-card-body">
           <h3>30 Drumcondra Rd Lower</h3>
           <address>
@@ -993,8 +1235,8 @@
             At the entrance to Drumcondra Station
           </address>
           <div class="visit-card-actions">
-            <a href="#" class="btn btn-primary">Get directions</a>
-            <a href="tel:+353873957157" class="btn btn-ghost" style="border-color:rgba(250,243,228,.5); color:var(--cream)">087 395 7157</a>
+            <a href="https://www.google.com/maps/place/Steaming+Cups/@53.3631317,-6.2611561,17z/data=!3m1!4b1!4m6!3m5!1s0x48670ff37e40c959:0x5735a71af745ea01!8m2!3d53.3631285!4d-6.2585812" target="_blank" rel="noopener" class="btn btn-primary">Get directions <span class="arrow">→</span></a>
+            <a href="tel:+353873957157" class="btn btn-ghost">087 395 7157</a>
           </div>
         </div>
       </div>
