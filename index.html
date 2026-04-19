@@ -1,0 +1,1177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Steaming Cups — neighborhood coffee &amp; pastries</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;450;500;600&family=Caveat:wght@500&display=swap">
+<style>
+  /* ============ TOKENS ============ */
+  :root {
+    --paper:        #f4ecdc;
+    --paper-warm:   #ebdfc6;
+    --paper-deep:   #e3d3b3;
+    --cream:        #faf3e4;
+    --ink:          #1c1310;
+    --ink-2:        #3d2d23;
+    --ink-soft:     #5b4a3d;
+    --ink-mute:     #8f7c69;
+    --rule:         #c9b994;
+    --rule-soft:    #d9c9a9;
+    --terracotta:   #b84a2a;
+    --terracotta-d: #8e3416;
+    --amber:        #d4893a;
+    --forest:       #506b48;
+    --shadow-soft:  0 1px 2px rgba(70,40,20,.05), 0 8px 24px rgba(70,40,20,.08);
+    --shadow-lift:  0 1px 2px rgba(70,40,20,.06), 0 20px 50px rgba(70,40,20,.15);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink-2);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 450;
+    font-size: 16px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* subtle paper grain */
+    background-image:
+      radial-gradient(rgba(120,85,50,.04) 1px, transparent 1px),
+      radial-gradient(rgba(120,85,50,.03) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 1px 2px;
+  }
+
+  .serif { font-family: 'Fraunces', Georgia, 'Times New Roman', serif; font-optical-sizing: auto; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+
+  /* ============ NAV ============ */
+  .nav {
+    position: absolute; top: 0; left: 0; right: 0;
+    z-index: 20;
+    padding: 28px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    color: var(--cream);
+  }
+  .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    color: inherit;
+  }
+  .brand span { font-style: normal; font-weight: 400; }
+  .nav-links {
+    display: flex; gap: 34px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .02em;
+  }
+  .nav-links a {
+    color: inherit;
+    text-decoration: none;
+    opacity: .88;
+    transition: opacity .2s;
+    position: relative;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-right {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14px;
+    opacity: .85;
+  }
+  .nav-right .dot {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: #a8c48a; margin-right: 8px; vertical-align: 2px;
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    overflow: hidden;
+    color: var(--cream);
+    display: flex; align-items: flex-end;
+  }
+  .hero-img {
+    position: absolute; inset: 0;
+    background: url('assets/shop-interior.webp') center/cover;
+    filter: saturate(1.08) contrast(1.03);
+  }
+  .hero-scrim {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(15,8,4,.55) 0%, rgba(15,8,4,.15) 40%, rgba(15,8,4,.78) 100%);
+  }
+  .hero-inner {
+    position: relative;
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 40px 110px;
+  }
+  .hero-eyebrow {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: .01em;
+    opacity: .92;
+    display: inline-flex; align-items: center; gap: 14px;
+    margin-bottom: 22px;
+  }
+  .hero-eyebrow::before,
+  .hero-eyebrow::after {
+    content: ''; width: 28px; height: 1px; background: rgba(250,243,228,.5);
+  }
+  h1.hero-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(56px, 8.2vw, 118px);
+    line-height: .98;
+    letter-spacing: -0.025em;
+    margin: 0 0 28px;
+    max-width: 13ch;
+    text-wrap: balance;
+  }
+  .hero-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: #f2c58a;
+  }
+  .hero-sub {
+    max-width: 42ch;
+    font-size: 17px;
+    line-height: 1.65;
+    color: rgba(250,243,228,.88);
+    margin: 0 0 36px;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 26px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .01em;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: transform .15s ease, background .2s, color .2s, box-shadow .2s;
+    line-height: 1;
+  }
+  .btn-primary {
+    background: var(--terracotta);
+    color: var(--cream);
+    box-shadow: 0 1px 2px rgba(0,0,0,.15), 0 8px 22px rgba(184,74,42,.3);
+  }
+  .btn-primary:hover { background: var(--terracotta-d); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: inherit;
+    border: 1px solid rgba(250,243,228,.4);
+  }
+  .btn-ghost:hover { background: rgba(250,243,228,.08); border-color: rgba(250,243,228,.7); }
+  .btn-dark {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .btn-dark:hover { background: var(--ink-2); }
+  .btn .arrow { transition: transform .2s; }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  /* ============ SECTION PRIMITIVES ============ */
+  section { position: relative; }
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .eyebrow::before {
+    content: ''; width: 24px; height: 1px; background: currentColor;
+  }
+  h2.section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(36px, 4.6vw, 56px);
+    line-height: 1.08;
+    letter-spacing: -0.022em;
+    color: var(--ink);
+    margin: 16px 0 0;
+    text-wrap: balance;
+  }
+  h2.section-title em { font-style: italic; color: var(--terracotta); font-weight: 400; }
+  .lede {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 38ch;
+    margin-top: 20px;
+  }
+
+  /* ============ STORY ============ */
+  .story { padding: 130px 0 100px; }
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 90px;
+    align-items: center;
+  }
+  .story-copy p {
+    color: var(--ink-soft);
+    font-size: 17px;
+    line-height: 1.72;
+    max-width: 52ch;
+  }
+  .story-copy p + p { margin-top: 18px; }
+  .story-copy .first-letter::first-letter {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    float: left;
+    font-size: 68px;
+    line-height: .9;
+    padding: 8px 12px 0 0;
+    color: var(--terracotta);
+  }
+  .signature {
+    margin-top: 36px;
+    padding-top: 26px;
+    border-top: 1px solid var(--rule-soft);
+    display: flex; align-items: center; gap: 14px;
+  }
+  .signature-name {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .signature-role {
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 4px;
+  }
+
+  .story-image-stack {
+    position: relative;
+    aspect-ratio: 4 / 5;
+  }
+  .story-img {
+    position: absolute;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lift);
+  }
+  .story-img img { width: 100%; height: 100%; object-fit: cover; }
+  .story-img-main {
+    inset: 0 25% 18% 0;
+    z-index: 2;
+  }
+  .story-img-small {
+    right: 0; bottom: 0;
+    width: 58%; height: 52%;
+    z-index: 3;
+    border: 8px solid var(--cream);
+    transform: rotate(2deg);
+  }
+  .story-caption {
+    position: absolute;
+    left: 8%;
+    bottom: -8px;
+    z-index: 4;
+    font-family: 'Caveat', cursive;
+    font-size: 26px;
+    color: var(--ink-2);
+    transform: rotate(-3deg);
+    background: var(--cream);
+    padding: 4px 14px;
+    border-radius: 4px;
+    box-shadow: var(--shadow-soft);
+  }
+
+  /* ============ PULL QUOTE ============ */
+  .pullquote {
+    padding: 80px 0;
+    background: var(--paper-warm);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .pullquote blockquote {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(28px, 3.2vw, 40px);
+    line-height: 1.28;
+    color: var(--ink);
+    max-width: 28ch;
+    margin: 0 auto;
+    text-align: center;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .pullquote blockquote::before,
+  .pullquote blockquote::after {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-style: normal;
+    color: var(--terracotta);
+    font-size: 56px;
+    line-height: 1;
+    opacity: .55;
+  }
+  .pullquote blockquote::before { content: '\201C'; margin-bottom: 10px; }
+  .pullquote cite {
+    display: block;
+    margin-top: 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    font-style: normal;
+    color: var(--ink-mute);
+    text-align: center;
+  }
+
+  /* ============ MENU ============ */
+  .menu { padding: 130px 0 110px; }
+  .menu-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 56px;
+  }
+  .menu-head .lede { margin-top: 0; max-width: 42ch; }
+
+  .menu-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 42px;
+    padding: 14px 18px;
+    background: var(--cream);
+    border: 1px solid var(--rule-soft);
+    border-radius: 999px;
+    box-shadow: var(--shadow-soft);
+    max-width: fit-content;
+  }
+  .filter-label {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-mute);
+    margin-right: 6px;
+    padding-left: 4px;
+  }
+  .chip {
+    padding: 9px 16px;
+    border-radius: 999px;
+    background: transparent;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-2);
+    cursor: pointer;
+    transition: all .18s ease;
+    letter-spacing: .01em;
+  }
+  .chip:hover { background: var(--paper-warm); color: var(--ink); }
+  .chip.active {
+    background: var(--terracotta);
+    color: var(--cream);
+    box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 4px 12px rgba(184,74,42,.25);
+  }
+
+  .menu-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px 90px;
+  }
+  .menu-group {
+    break-inside: avoid;
+  }
+  .menu-group-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .menu-group h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0;
+  }
+  .menu-group h3 em { font-style: italic; font-weight: 400; color: var(--terracotta); }
+  .menu-group-note {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-mute);
+  }
+  .menu-list { list-style: none; padding: 0; margin: 0; }
+  .menu-item {
+    padding: 14px 0;
+    border-bottom: 1px dotted var(--rule-soft);
+  }
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .menu-item-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .menu-item-leader {
+    flex: 1;
+    border-bottom: 1px dotted var(--rule);
+    transform: translateY(-4px);
+    opacity: .7;
+  }
+  .menu-item-price {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--terracotta);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .menu-item-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    max-width: 50ch;
+  }
+  .menu-item-tags {
+    display: inline-flex;
+    gap: 6px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 4px;
+    color: var(--ink-mute);
+    background: var(--paper-warm);
+  }
+  .tag-v  { color: #4a6b3c; background: #e1ead0; }
+  .tag-gf { color: #8e5a1a; background: #efdcb8; }
+  .tag-df { color: #3a6070; background: #d4e3e8; }
+
+  .menu-footer {
+    margin-top: 70px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    color: var(--ink-mute);
+    font-size: 14px;
+  }
+  .menu-footer em { font-family: 'Fraunces', serif; font-style: italic; color: var(--ink-2); }
+
+  /* ============ REGULARS ============ */
+  .regulars {
+    padding: 110px 0;
+    background: var(--paper-warm);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .regulars-head {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end;
+    margin-bottom: 54px;
+  }
+  .regulars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .regular-card {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 30px 30px 28px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--rule-soft);
+    display: flex; flex-direction: column;
+  }
+  .regular-quote {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink);
+    flex: 1;
+  }
+  .regular-quote::before {
+    content: '\201C';
+    font-family: 'Fraunces', serif;
+    font-size: 40px;
+    color: var(--terracotta);
+    line-height: 0;
+    vertical-align: -18px;
+    margin-right: 2px;
+  }
+  .regular-meta {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule-soft);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .regular-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--paper-deep);
+    display: grid; place-items: center;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink);
+  }
+  .regular-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .regular-detail {
+    font-size: 12px; color: var(--ink-mute);
+    margin-top: 2px;
+  }
+
+  /* ============ VISIT ============ */
+  .visit { padding: 130px 0 90px; }
+  .visit-head { margin-bottom: 56px; }
+  .visit-grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 56px;
+    align-items: stretch;
+  }
+
+  .hours-card {
+    background: var(--cream);
+    border: 1px solid var(--rule-soft);
+    border-radius: 12px;
+    padding: 40px 44px;
+    box-shadow: var(--shadow-soft);
+  }
+  .hours-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+  .hours-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 28px;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .hours-note {
+    font-size: 13px;
+    color: var(--ink-mute);
+  }
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--forest);
+  }
+  .status .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--forest);
+  }
+
+  .hours-list {
+    list-style: none; padding: 0; margin: 0;
+  }
+  .hours-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 11px 0;
+    border-bottom: 1px dotted var(--rule-soft);
+  }
+  .hours-list li:last-child { border-bottom: none; }
+  .hours-day {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-2);
+    letter-spacing: .01em;
+  }
+  .hours-time {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .hours-list li.is-today {
+    position: relative;
+  }
+  .hours-list li.is-today .hours-day { color: var(--terracotta); }
+  .hours-list li.is-today .hours-time { color: var(--terracotta); }
+  .hours-list li.is-today::after {
+    content: 'today';
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: var(--terracotta);
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translate(100%, -50%) rotate(-6deg);
+  }
+
+  .visit-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 480px;
+    color: var(--cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: var(--shadow-lift);
+  }
+  .visit-card-img {
+    position: absolute; inset: 0;
+    background: url('assets/storefront.webp') center/cover;
+  }
+  .visit-card-scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(15,8,4,.1) 35%, rgba(15,8,4,.85) 100%);
+  }
+  .visit-card-body {
+    position: relative;
+    padding: 40px 40px 36px;
+  }
+  .visit-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 34px;
+    margin: 0 0 6px;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .visit-card address {
+    font-style: normal;
+    font-size: 15px;
+    line-height: 1.55;
+    opacity: .9;
+    margin-bottom: 24px;
+  }
+  .visit-card-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px 0 32px;
+  }
+  .foot-top {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(250,243,228,.12);
+  }
+  .foot-brand {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 34px;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .foot-brand span { font-style: normal; }
+  .foot-tag {
+    color: rgba(250,243,228,.7);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 38ch;
+  }
+  .foot-col h5 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: rgba(250,243,228,.6);
+    margin: 0 0 18px;
+  }
+  .foot-col ul { list-style: none; padding: 0; margin: 0; }
+  .foot-col li { margin-bottom: 10px; font-size: 14px; }
+  .foot-col a {
+    color: rgba(250,243,228,.85);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .foot-col a:hover { color: var(--amber); }
+  .foot-bottom {
+    margin-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: rgba(250,243,228,.45);
+    letter-spacing: .02em;
+    flex-wrap: wrap; gap: 12px;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1000px) {
+    .wrap { padding: 0 28px; }
+    .nav { padding: 24px 28px; }
+    .nav-links { display: none; }
+    .hero-inner { padding: 0 28px 90px; }
+
+    .story-grid,
+    .menu-head,
+    .menu-sections,
+    .regulars-head,
+    .visit-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .regulars-grid { grid-template-columns: 1fr; gap: 20px; }
+    .foot-top { grid-template-columns: 1fr 1fr; gap: 30px; }
+    .story { padding: 90px 0 70px; }
+    .menu, .visit { padding: 90px 0 70px; }
+    .regulars { padding: 80px 0; }
+  }
+  @media (max-width: 560px) {
+    .foot-top { grid-template-columns: 1fr; }
+    .hours-card { padding: 28px 24px; }
+    .visit-card-body { padding: 28px 24px; }
+    .menu-filters { width: 100%; justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <a href="#top" class="brand"><span>Steaming</span> Cups</a>
+  <div class="nav-links">
+    <a href="#story">Our story</a>
+    <a href="#menu">Menu</a>
+    <a href="#regulars">Regulars</a>
+    <a href="#visit">Visit</a>
+  </div>
+  <div class="nav-right"><span class="dot"></span>Open until 2:00</div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-img"></div>
+  <div class="hero-scrim"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">A neighborhood coffee bar · Drumcondra, Dublin</div>
+    <h1 class="hero-title">Slow mornings, <em>warm cups,</em> pastries by the window.</h1>
+    <p class="hero-sub">Freshly pulled espresso, laminated pastries baked at dawn, and a stool always kept warm for you. Since 2019.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn btn-primary">View the menu <span class="arrow">→</span></a>
+      <a href="#visit" class="btn btn-ghost">Visit us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section class="story" id="story">
+  <div class="wrap">
+    <div class="story-grid">
+      <div class="story-copy">
+        <span class="eyebrow">Our story</span>
+        <h2 class="section-title">A little shop with <em>big window light.</em></h2>
+        <div class="lede">We opened Steaming Cups in a narrow storefront with a red awning and a stubborn espresso machine. Six years on, the regulars know where the sugar lives.</div>
+        <p style="margin-top:28px" class="first-letter">Our beans come from a small roaster two neighborhoods over, delivered every Monday and every Friday. We grind them to order, pull each shot within thirty seconds, and steam the milk to a silky, quiet spin — the kind that leaves a proper rosetta on a flat white and makes a cappuccino stand up on its own.</p>
+        <p>The pastry case fills up at six. The cookies get chalkboard nicknames. The playlist changes with the weather. We keep things small on purpose — it's the only way a café stays a café.</p>
+        <div class="signature">
+          <div>
+            <div class="signature-name">Mira &amp; Daniyal</div>
+            <div class="signature-role">Owners · Baristas · Dishwashers</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-image-stack">
+        <div class="story-img story-img-main"><img src="assets/espresso-machine.webp" alt="Our espresso bar"></div>
+        <div class="story-img story-img-small"><img src="assets/pastries.webp" alt="Pastry case"></div>
+        <div class="story-caption">this morning, 6:42am</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PULL QUOTE ============ -->
+<section class="pullquote">
+  <div class="wrap">
+    <blockquote>Good coffee, made with care. A warm room. Nothing you wouldn't want.</blockquote>
+    <cite>— Our whole philosophy, more or less</cite>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="menu-head">
+      <div>
+        <span class="eyebrow">The menu</span>
+        <h2 class="section-title">Small &amp; <em>honest.</em></h2>
+      </div>
+      <p class="lede">Everything we serve, on one page. Swap any milk for oat, almond, or soy — no upcharge.</p>
+    </div>
+
+    <div class="menu-filters" role="group" aria-label="Filter menu">
+      <span class="filter-label">Show</span>
+      <button class="chip active" data-filter="all">Everything</button>
+      <button class="chip" data-filter="espresso">Espresso</button>
+      <button class="chip" data-filter="slow">Slow coffee</button>
+      <button class="chip" data-filter="iced">Iced</button>
+      <button class="chip" data-filter="pastry">Pastries</button>
+      <button class="chip" data-filter="brunch">Brunch</button>
+      <button class="chip" data-filter="vegan">Vegan</button>
+      <button class="chip" data-filter="gf">Gluten-free</button>
+    </div>
+
+    <div class="menu-sections" id="menu-sections"></div>
+
+    <div class="menu-footer">
+      <span>Prices in EUR · Kitchen closes thirty minutes before the shop does</span>
+      <span>Updated <em>this morning</em></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REGULARS ============ -->
+<section class="regulars" id="regulars">
+  <div class="wrap">
+    <div class="regulars-head">
+      <div>
+        <span class="eyebrow">Regulars</span>
+        <h2 class="section-title">A few kind words.</h2>
+      </div>
+      <p class="lede">Written in the guestbook that lives on the counter, between the sugar and the tip jar.</p>
+    </div>
+    <div class="regulars-grid">
+      <div class="regular-card">
+        <p class="regular-quote">The only café where the barista remembers my order <em>and</em> my dog's name. Yuki gets a biscuit every Saturday. I get a cortado.</p>
+        <div class="regular-meta">
+          <div class="regular-avatar">J</div>
+          <div>
+            <div class="regular-name">Jenna Park</div>
+            <div class="regular-detail">Tuesdays, by the window</div>
+          </div>
+        </div>
+      </div>
+      <div class="regular-card">
+        <p class="regular-quote">I've edited four drafts of my novel at the two-top near the radiator. The flat whites are the real co-author.</p>
+        <div class="regular-meta">
+          <div class="regular-avatar">S</div>
+          <div>
+            <div class="regular-name">Sam Okafor</div>
+            <div class="regular-detail">Mornings, laptop open</div>
+          </div>
+        </div>
+      </div>
+      <div class="regular-card">
+        <p class="regular-quote">The almond croissant is the closest thing my family has to a Sunday tradition now. My kids request it over brunch.</p>
+        <div class="regular-meta">
+          <div class="regular-avatar">R</div>
+          <div>
+            <div class="regular-name">Rita Alvarez</div>
+            <div class="regular-detail">Weekends, with three small humans</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VISIT ============ -->
+<section class="visit" id="visit">
+  <div class="wrap">
+    <div class="visit-head">
+      <span class="eyebrow">Come by</span>
+      <h2 class="section-title">We're <em>right here.</em></h2>
+    </div>
+    <div class="visit-grid">
+      <div class="hours-card">
+        <div class="hours-top">
+          <div>
+            <h3 class="hours-title">Opening hours</h3>
+            <div class="hours-note">Kitchen closes thirty minutes earlier.</div>
+          </div>
+          <div class="status"><span class="dot"></span>Open now</div>
+        </div>
+        <ul class="hours-list" id="hours-list">
+          <li data-day="1"><span class="hours-day">Monday</span><span class="hours-time">7:00 — 2:00</span></li>
+          <li data-day="2"><span class="hours-day">Tuesday</span><span class="hours-time">7:00 — 2:00</span></li>
+          <li data-day="3"><span class="hours-day">Wednesday</span><span class="hours-time">7:00 — 2:00</span></li>
+          <li data-day="4"><span class="hours-day">Thursday</span><span class="hours-time">7:00 — 2:00</span></li>
+          <li data-day="5"><span class="hours-day">Friday</span><span class="hours-time">7:00 — 2:00</span></li>
+          <li data-day="6"><span class="hours-day">Saturday</span><span class="hours-time">Closed</span></li>
+          <li data-day="0"><span class="hours-day">Sunday</span><span class="hours-time">Closed</span></li>
+        </ul>
+      </div>
+      <div class="visit-card">
+        <div class="visit-card-img"></div>
+        <div class="visit-card-scrim"></div>
+        <div class="visit-card-body">
+          <h3>30 Drumcondra Rd Lower</h3>
+          <address>
+            Drumcondra, Dublin<br>
+            D09 H0V5
+          </address>
+          <div class="visit-card-actions">
+            <a href="#" class="btn btn-primary">Get directions</a>
+            <a href="tel:+353873957157" class="btn btn-ghost" style="border-color:rgba(250,243,228,.5); color:var(--cream)">087 395 7157</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand"><span>Steaming</span> Cups</div>
+        <p class="foot-tag">A little coffee shop on Drumcondra Road. Open weekday mornings, closed by two, back again Monday.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Visit</h5>
+        <ul>
+          <li>30 Drumcondra Rd Lower</li>
+          <li>Drumcondra, Dublin, D09 H0V5</li>
+          <li>087 395 7157</li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#story">Our story</a></li>
+          <li><a href="#regulars">Regulars</a></li>
+          <li><a href="#visit">Visit</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Follow along</h5>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Newsletter</a></li>
+          <li><a href="#">hello@steamingcups.co</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Steaming Cups. Made with caffeine, in Dublin.</span>
+      <span>Photography by the regulars.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ============ MENU DATA ============
+  const GROUPS = [
+    {
+      id: 'espresso',
+      title: 'Espresso bar',
+      note: 'Single-origin house blend',
+      items: [
+        { name: 'Espresso',     price: '3.25', diet: ['v','df','gf'], desc: 'A short pour of our house blend. Dark cherry, brown sugar, a soft finish.' },
+        { name: 'Macchiato',    price: '3.75', diet: ['gf'],          desc: 'Espresso marked with a whisper of steamed milk.' },
+        { name: 'Cortado',      price: '4.25', diet: ['gf'],          desc: 'Equal parts espresso and warm milk, served in a small glass.' },
+        { name: 'Flat white',   price: '4.75', diet: ['gf'],          desc: 'Double ristretto with silky microfoam. Our most-ordered drink.' },
+        { name: 'Cappuccino',   price: '4.75', diet: ['gf'],          desc: 'Lifted foam, a dusting of cocoa on request.' },
+        { name: 'Latte',        price: '5.00', diet: ['gf'],          desc: 'Smooth, forgiving, always a safe bet.' },
+        { name: 'Mocha',        price: '5.25', diet: ['gf'],          desc: 'House ganache folded into a double shot. Not too sweet.' }
+      ]
+    },
+    {
+      id: 'slow',
+      title: 'Slow coffee',
+      note: 'Pour-over & cup service',
+      items: [
+        { name: 'Drip of the day', price: '3.50', diet: ['v','df','gf'], desc: 'Whatever we\'re brewing in the batch urn — ask the barista.' },
+        { name: 'Hand pour',       price: '5.50', diet: ['v','df','gf'], desc: 'V60 or Kalita, single origin, a four-minute wait well spent.' },
+        { name: 'French press',    price: '6.00', diet: ['v','df','gf'], desc: 'A full pot, for two. Heavier body, brighter finish.' },
+        { name: 'Chai latte',      price: '4.75', diet: ['gf'],          desc: 'Housemade masala, steeped strong, steamed to order.' },
+        { name: 'Hot chocolate',   price: '4.75', diet: ['gf'],          desc: '70% dark chocolate melted into whole milk. Marshmallow optional.' }
+      ]
+    },
+    {
+      id: 'iced',
+      title: 'Iced drinks',
+      note: 'All summer, more in winter than you\'d think',
+      items: [
+        { name: 'Iced americano',   price: '3.75', diet: ['v','df','gf'], desc: 'Two shots, cold water, a lot of ice.' },
+        { name: 'Iced latte',       price: '5.00', diet: ['gf'],          desc: 'Cold milk, espresso, one slow stir.' },
+        { name: 'Cold brew',        price: '4.50', diet: ['v','df','gf'], desc: 'Steeped overnight. Low-acid, long finish.' },
+        { name: 'Shakerato',        price: '5.50', diet: ['v','df','gf'], desc: 'Espresso shaken hard with ice and a splash of demerara.' },
+        { name: 'Hibiscus iced tea',price: '4.00', diet: ['v','df','gf'], desc: 'Tart, floral, faintly citrus. Caffeine-free.' }
+      ]
+    },
+    {
+      id: 'pastry',
+      title: 'From the case',
+      note: 'Baked here, every morning',
+      items: [
+        { name: 'Butter croissant',    price: '3.75', diet: [], desc: 'Laminated over 72 hours. Flakes on your lap, no apologies.' },
+        { name: 'Pain au chocolat',    price: '4.25', diet: [], desc: 'Dark chocolate batons, same honest dough.' },
+        { name: 'Almond croissant',    price: '4.75', diet: [], desc: 'Twice-baked with frangipane. Best warm.' },
+        { name: 'Morning bun',         price: '4.25', diet: [], desc: 'Cardamom, orange zest, a crackle of demerara sugar.' },
+        { name: 'Brookie',             price: '4.00', diet: [], desc: 'Brownie bottom, cookie top. Loved by the middle child.' },
+        { name: 'Oat chocolate cookie',price: '3.50', diet: ['v','df'], desc: 'Chewy, salty, secretly plant-based.' },
+        { name: 'Flourless chocolate', price: '5.25', diet: ['gf'],     desc: 'Dense, fudgy, no flour in sight.' },
+        { name: 'Banana bread',        price: '3.75', diet: [],         desc: 'Brown-butter, walnut, a pinch of flaky sea salt.' }
+      ]
+    },
+    {
+      id: 'brunch',
+      title: 'All-day brunch',
+      note: 'Small kitchen, honest plates',
+      items: [
+        { name: 'Avocado toast',      price: '9.50',  diet: ['v','df'],      desc: 'Sourdough, smashed avocado, lemon, chili flakes, soft herbs.' },
+        { name: 'Burrata plate',      price: '11.00', diet: ['gf'],          desc: 'Burrata, heirloom tomato, torn basil, olive oil, flaky salt.' },
+        { name: 'Breakfast sandwich', price: '8.50',  diet: [],              desc: 'Brioche, soft egg, cheddar, tomato jam. Bacon optional.' },
+        { name: 'Granola bowl',       price: '7.50',  diet: ['v','df'],      desc: 'Housemade granola, coconut yogurt, seasonal fruit, honey.' },
+        { name: 'Soup of the day',    price: '6.50',  diet: ['v','df','gf'], desc: 'Ask us what\'s in the pot. Bread, butter, included.' }
+      ]
+    }
+  ];
+
+  const DIET_LABEL = { v: 'Vegan', gf: 'Gluten-free', df: 'Dairy-free' };
+  const DIET_CLASS = { v: 'tag-v', gf: 'tag-gf', df: 'tag-df' };
+
+  let activeFilter = 'all';
+  const mount = document.getElementById('menu-sections');
+
+  function render() {
+    const dietFilters = { vegan: 'v', gf: 'gf' };
+    mount.innerHTML = GROUPS.map(group => {
+      // Category filter
+      let show = true;
+      if (['espresso','slow','iced','pastry','brunch'].includes(activeFilter) && group.id !== activeFilter) {
+        show = false;
+      }
+      if (!show) return '';
+
+      // Diet filter narrows items in each group
+      let items = group.items;
+      if (activeFilter in dietFilters) {
+        items = items.filter(i => i.diet.includes(dietFilters[activeFilter]));
+      }
+      if (items.length === 0) return '';
+
+      return `
+        <div class="menu-group">
+          <div class="menu-group-head">
+            <h3>${group.title}</h3>
+            <span class="menu-group-note">${group.note}</span>
+          </div>
+          <ul class="menu-list">
+            ${items.map(i => `
+              <li class="menu-item">
+                <div class="menu-item-row">
+                  <span class="menu-item-name">${i.name}</span>
+                  <span class="menu-item-leader"></span>
+                  <span class="menu-item-price">€${i.price}</span>
+                </div>
+                <div class="menu-item-desc">${i.desc}</div>
+                ${i.diet.length ? `<div class="menu-item-tags">${
+                  i.diet.map(d => `<span class="tag ${DIET_CLASS[d]}">${DIET_LABEL[d]}</span>`).join('')
+                }</div>` : ''}
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+      `;
+    }).join('') || '<p style="grid-column:1/-1; font-family:Fraunces, serif; font-style:italic; color:var(--ink-mute); font-size:20px; text-align:center; padding:40px 0">Nothing matches — try a different filter.</p>';
+  }
+
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeFilter = chip.dataset.filter;
+      render();
+    });
+  });
+
+  // Today highlight in hours list + open/closed status
+  const now = new Date();
+  const today = now.getDay();
+  const hour = now.getHours();
+  const closedDays = [0, 6]; // Sunday, Saturday
+  const isOpen = !closedDays.includes(today) && hour >= 7 && hour < 14;
+
+  document.querySelectorAll('#hours-list li').forEach(li => {
+    if (parseInt(li.dataset.day, 10) === today) li.classList.add('is-today');
+  });
+
+  // Update nav and status badge
+  const navRight = document.querySelector('.nav-right');
+  const statusEl = document.querySelector('.status');
+  if (!isOpen) {
+    navRight.innerHTML = '<span class="dot" style="background:#8f7c69"></span>Closed';
+    statusEl.innerHTML = '<span class="dot" style="background:#8f7c69"></span>Closed';
+    statusEl.style.color = 'var(--ink-mute)';
+  }
+
+  render();
+</script>
+</body>
+</html>
